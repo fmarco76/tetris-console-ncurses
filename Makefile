@@ -1,6 +1,14 @@
-CC=g++
-#CFLAGS=-I.
-LIBS=-lncurses -lpthread
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	CC=g++
+	#CFLAGS=-I.
+	LIBS=-lncurses -lpthread
+endif
+ifeq ($(UNAME_S),Darwin)
+	CCC=clang -std=c++11 -stdlib=libc++
+  #CCFLAGS += -D OSX
+	LIBS=-lncurses -lpthread -lstdc++
+endif
 
 OBJ= \
 	blocks.o \

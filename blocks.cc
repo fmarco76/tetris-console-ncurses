@@ -79,12 +79,8 @@ void Block::rotate() {
   int tmp = iRow;
   iRow = iCol;
   iCol = tmp;
-  switch(shp) {
-  case Shapes::Lshape:
-  case Shapes::bLshape:
-  case Shapes::Tshape:
-  case Shapes::Zshape:
-  case Shapes::bZshape:
+  if(shp == Shapes::Lshape || shp == Shapes::Lshape || shp == Shapes::bLshape ||
+    shp == Shapes::Tshape || shp == Shapes::Zshape || shp == Shapes::bZshape) {
     char *tElem = new char[6];  
     if (tmp == 3) {
       tElem[0] = elem[1];
@@ -104,7 +100,6 @@ void Block::rotate() {
     }
     delete[] elem;
     elem = tElem;
-    break;
   }
 
 }

@@ -123,7 +123,7 @@ int main() {
   blk = Block(static_cast<enum Shapes>((int) rand()%7));
 //  Block blk = Block(static_cast<enum Shapes>((int) 0));
   curs_set(0);
-  refresh;
+  refresh();
   std::thread first (goDown);
   while(1){
     c = getch();

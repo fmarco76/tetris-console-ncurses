@@ -1,14 +1,14 @@
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-	CC=g++
-	#CFLAGS=-I.
-	LIBS=-lncurses -lpthread
+	CXX=g++
+	#CXXFLAGS=-I.
 endif
 ifeq ($(UNAME_S),Darwin)
-	CCC=clang -std=c++11 -stdlib=libc++
-  #CCFLAGS += -D OSX
-	LIBS=-lncurses -lpthread -lstdc++
+	CXX=clang++
+  CXXFLAGS += -D OSX -std=c++14
 endif
+
+LIBS=-lncurses -lpthread
 
 OBJ= \
 	blocks.o \
@@ -18,10 +18,10 @@ OBJ= \
 all: tetris
 
 tetris: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+	$(CXX) -o $@ $^ $(CXXFLAGS) $(LIBS)
 
 %(OBJ): %.cc %.h
-	$(CC) -c $@ $< $(CFLAGS)
+	$(CXX) -c $< $(CXXFLAGS)
 
 
 .PHONY: clean

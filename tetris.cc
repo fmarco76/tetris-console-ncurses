@@ -148,10 +148,12 @@ int main() {
       break;
     case KEY_SPACE:
     case KEY_UP:
+      mtx.lock();
       blk.rotate();
       while (blk.columns() + blk.posX() > bs.getWidth() + 1) {
         blk.moveLeft();
       }
+      mtx.unlock();
       break;
     case KEY_ESC:
       complete();
